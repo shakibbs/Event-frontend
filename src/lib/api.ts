@@ -61,7 +61,7 @@ export async function inviteUserApi(eventId: string | number, file?: File) {
     }
   }
   
-  const response = await fetch(`http://localhost:8083/api${path}`, {
+  const response = await fetch(`${API_BASE_URL}${path}`, {
     method: 'POST',
     body: formData,
     headers, // Don't set Content-Type, let browser set multipart/form-data
@@ -118,7 +118,7 @@ export async function fetchPublicEventsApi(): Promise<Event[]> {
   if (data && Array.isArray(data.events)) return data.events;
   return [];
 }
-const API_BASE_URL = 'http://localhost:8083/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://event-backend-u02k.onrender.com/api';
 
 // --- Types ---
 export interface Event {
